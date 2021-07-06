@@ -5,8 +5,8 @@ module.exports = {
       name: `JP`,
       summary: `who loves computers.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `plz don't Spray me`,
+    siteUrl: `https://comeonux.com/`,
     social: {
       twitter: `jparanada`,
     },
