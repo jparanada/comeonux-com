@@ -69,7 +69,7 @@ to skip this section.
 
 I highly recommend you pause reading this post and go and first read Richard
 Harold's [An Introduction to Appearance Analysis](https://www.color.org/ss84.pdf). (This great writeup is linked on the
-ICC website's (article on icc profiles)[https://www.color.org/profile.xalter]—that article is also informative, though a
+ICC website's [article on icc profiles](https://www.color.org/profile.xalter)—that article is also informative, though a
 bit dense.)
 
 Here are the main takeaways from that article:
@@ -146,7 +146,7 @@ following manner:
 
 ```
 % ARGYLL_CREATE_WRONG_VON_KRIES_OUTPUT_CLASS_REL_WP=1
-% colprof -qh -ax -ua -O scanner_profile_using_it8_qh_ax_ua.icc ./scanin_output
+% colprof -qh -ax -ua -O profile_using_it8.icc ./scanin_output
 % unset ARGYLL_CREATE_WRONG_VON_KRIES_OUTPUT_CLASS_REL_WP
 ```
 
@@ -187,8 +187,9 @@ We might expect low de2k values if we call `profcheck` on scanin_output and the 
 from it. And indeed, that's the case:
 
 ```
-% profcheck -k scanin_output.ti3 scanner_profile_using_it8_qh_ax_ua.icc
-Profile check complete, errors(CIEDE2000): max. = 1.608338, avg. = 0.496446, RMS = 0.560694
+% profcheck -k scanin_output.ti3 profile_using_it8.icc
+Profile check complete, errors(CIEDE2000): 
+  max. = 1.608338, avg. = 0.496446, RMS = 0.560694
 ```
 
 This looks like a good result. Overall, the difference between the profile's output and the real-life appearance of the
@@ -197,14 +198,26 @@ delta E, if we're really picky we might be able to tell that those colors are mi
 `profcheck` with the `-v2` argument to list per-patch delta Es, and we can sort by delta E by using the `-s` flag:
 
 ```
-% profcheck -s -k -v2 scanin_output.ti3 scanner_profile_using_it8_qh_ax_ua.icc
-[1.608338] GS01: 0.78466810 0.78166620 0.78025420 -> 85.436768 -0.776648 -0.873109 should be 87.616021 -0.452676 -0.231646
-[1.592635] GS03: 0.68268210 0.67100010 0.67086070 -> 77.578247 -0.136407 -1.185150 should be 79.459906 0.038215 -0.307344
-[1.428966] GS00: 0.83596700 0.83926110 0.84877450 -> 89.988369 -0.573852 -1.855539 should be 92.189509 -0.329659 -1.589465
+% profcheck -s -k -v2 scanin_output.ti3 profile_using_it8.icc
+[1.608338] GS01: 0.78466810 0.78166620 0.78025420 -> 
+  85.436768 -0.776648 -0.873109 should be 
+  87.616021 -0.452676 -0.231646
+[1.592635] GS03: 0.68268210 0.67100010 0.67086070 -> 
+  77.578247 -0.136407 -1.185150 should be 
+  79.459906 0.038215 -0.307344
+[1.428966] GS00: 0.83596700 0.83926110 0.84877450 -> 
+  89.988369 -0.573852 -1.855539 should be 
+  92.189509 -0.329659 -1.589465
 <282 other rows>
-[0.106177] F03: 0.06017311 0.11599920 0.07650831 -> 16.484594 -24.761752 7.604675 should be 16.601855 -24.654365 7.660090
-[0.077862] G04: 0.06373692 0.14131240 0.13396850 -> 20.291734 -26.326222 -5.094834 should be 20.322086 -26.170230 -5.079342
-[0.077231] J03: 0.10419540 0.09699900 0.23630070 -> 15.262708 20.484710 -38.129116 should be 15.329014 20.633511 -38.253700
+[0.106177] F03: 0.06017311 0.11599920 0.07650831 -> 
+  16.484594 -24.761752 7.604675 should be 
+  16.601855 -24.654365 7.660090
+[0.077862] G04: 0.06373692 0.14131240 0.13396850 -> 
+  20.291734 -26.326222 -5.094834 should be 
+  20.322086 -26.170230 -5.079342
+[0.077231] J03: 0.10419540 0.09699900 0.23630070 -> 
+  15.262708 20.484710 -38.129116 should be 
+  15.329014 20.633511 -38.253700
 ```
 
 The tuple to the left of the arrow is an RGB value of the raw scanner image, normalized to a range of 0 to 1. The
@@ -296,17 +309,26 @@ and CIELAB values into a single row, and also do the same for the other 199 patc
 At long last, we can run:
 
 ```
-% profcheck -k card-spectro-measurements.ti3 scanner_profile_using_it8_qh_ax_ua.icc
-Profile check complete, errors(CIEDE2000): max. = 8.265088, avg. = 2.336558, RMS = 2.687289
+% profcheck -k card-spectro-measurements.ti3 profile_using_it8.icc
+Profile check complete, errors(CIEDE2000): 
+  max. = 8.265088, avg. = 2.336558, RMS = 2.687289
 ```
 
 For our Volbeat patches, here are the delta Es (which we can see by calling profcheck with `-v2`):
 
 ```
-[1.895904] 11 @ ss053-1: 0.53705650 0.26073090 0.19072250 -> 48.557180 41.262748 32.198664 should be 48.241168 42.658626 36.438933
-[1.927984] 12 @ ss053-2: 0.58248260 0.22664230 0.21501490 -> 47.845154 54.544742 25.030035 should be 48.045080 55.607623 29.091183
-[2.474007] 13 @ ss053-3: 0.74952320 0.70212860 0.66567480 -> 81.183995 2.841436 5.125732 should be 81.653645 4.851528 5.432824
-[1.198336] 14 @ ss053-4: 0.49048600 0.49388880 0.52420840 -> 63.687846 -0.293576 -6.069309 should be 62.325174 -0.053347 -6.088504
+[1.895904] 11 @ ss053-1: 0.53705650 0.26073090 0.19072250 -> 
+  48.557180 41.262748 32.198664 should be 
+  48.241168 42.658626 36.438933
+[1.927984] 12 @ ss053-2: 0.58248260 0.22664230 0.21501490 -> 
+  47.845154 54.544742 25.030035 should be 
+  48.045080 55.607623 29.091183
+[2.474007] 13 @ ss053-3: 0.74952320 0.70212860 0.66567480 -> 
+  81.183995 2.841436 5.125732 should be 
+  81.653645 4.851528 5.432824
+[1.198336] 14 @ ss053-4: 0.49048600 0.49388880 0.52420840 -> 
+  63.687846 -0.293576 -6.069309 should be 
+  62.325174 -0.053347 -6.088504
 ```
 
 Let's be very explicit about what these profcheck results mean, using patch ss053-3 as an example. The scanner "sees"
@@ -379,13 +401,14 @@ file, by hand, to use with `profcheck`. What if we also used it to create a prof
 
 ```
 % ARGYLL_CREATE_WRONG_VON_KRIES_OUTPUT_CLASS_REL_WP=1
-% colprof -qh -ax -ua -O scanner_profile_using_card_measurements_qh_ax_ua.icc ./card-spectro-measurements
+% colprof -qh -ax -ua -O profile_using_cards.icc ./card-spectro-measurements
 % unset ARGYLL_CREATE_WRONG_VON_KRIES_OUTPUT_CLASS_REL_WP
 ```
 
 ```
-% profcheck -k  ./card-spectro-measurements.ti3  scanner_profile_using_card_measurements_qh_ax_ua.icc
-Profile check complete, errors(CIEDE2000): max. = 1.844623, avg. = 0.314575, RMS = 0.420020
+% profcheck -k ./card-spectro-measurements.ti3 profile_using_cards.icc
+Profile check complete, errors(CIEDE2000): 
+  max. = 1.844623, avg. = 0.314575, RMS = 0.420020
 ```
 
 Here's two scans of Volbeat SS. The first has had the "IT8 color profile" applied to it, and the second has had this

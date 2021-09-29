@@ -1,0 +1,7 @@
+p code[class*="language-"] {
+  font-size: 0.95rem;
+}
+
+pre[class*="language-"] code[class*="language-"] {
+  font-size: 0.85rem;
+}
