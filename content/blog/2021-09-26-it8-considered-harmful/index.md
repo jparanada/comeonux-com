@@ -1,6 +1,6 @@
 ---
 title: "Creating Colorimetrically-Accurate Scans, Part 1: IT8 Considered Harmful"
-date: "2021-09-28T22:00:00.000Z"
+date: "2021-09-29T02:31:46Z"
 description: "1st in a series about creating scanner icc profiles"
 ---
 
@@ -403,42 +403,42 @@ I think there's an especially notable difference in the yellow color of the bord
 PS: I hope to have my datasets and profiles uploaded to GitHub at a later point. Once they're up, I'll edit them into
 this post!
 
-[^1]: See [here](https://www.silverfast.com/PDF/printer_calibration_review_en.pdf)
-, [here](https://scanning.guide/why-calibration-is-important)
-, [here](https://www.filmscanner.info/en/Scannerkalibrierung.html),
-and [here](https://www.booksmartstudio.com/color_tutorial/scanners.html) for some examples. Note that I don't wish to
-put down these guides, but any claims to color accuracy should come with a big asterisk next to them. I do agree that an
-IT8 gives you color *consistency*, although so would something like a "canned" profile that comes with SilverFast.
-Nevertheless, I would recommend owning a target if you own a scanner; I own 2 IT8 targets, as well as a Hutchcolor
-target.
+[^1]: See [here](https://www.silverfast.com/PDF/printer_calibration_review_en.pdf), 
+    [here](https://scanning.guide/why-calibration-is-important),
+    [here](https://www.filmscanner.info/en/Scannerkalibrierung.html),
+    and [here](https://www.booksmartstudio.com/color_tutorial/scanners.html) for some examples. Note that I don't wish 
+    to put down these guides, but any claims to color accuracy should come with a big asterisk next to them. I do agree
+    that an IT8 gives you color *consistency*, although so would something like a "canned" profile that comes with 
+    SilverFast. Nevertheless, I would recommend owning a target if you own a scanner; I own 2 IT8 targets, as well as a 
+    Hutchcolor target.
 
 [^2]: I do think the folks that made the original images did the best with what they had, and a lot of the equipment and
-software I use for my process now wouldn't have been available in, say, 2005.
+    software I use for my process now wouldn't have been available in, say, 2005.
 
 [^3]: I realized much later that if you want to make colorimetrically-accurate scans then you do *not* want a
-matrix+shaper profile, but rather a cLUT profile. This is
-actually [called out](http://www.argyllcms.com/doc/Scenarios.html#PS4) in the doc too... "If the purpose of the input
-profile is to use it as a substitute for a colorimeter, then the -ua flag should be used to force Absolute Colorimetric
-intent, and avoid clipping colors above the test chart white point. Unless the shaper/matrix type profile is a very good
-fit, it is probably advisable to use a LUT type profile in this situation."
+    matrix+shaper profile, but rather a cLUT profile. This is actually 
+    [called out](http://www.argyllcms.com/doc/Scenarios.html#PS4) in the doc too... "If the purpose of the input
+    profile is to use it as a substitute for a colorimeter, then the -ua flag should be used to force Absolute Colorimetric
+    intent, and avoid clipping colors above the test chart white point. Unless the shaper/matrix type profile is a very good
+    fit, it is probably advisable to use a LUT type profile in this situation."
 
 [^4]: The spectrophotometer can also return Lab and/or XYZ values for the color, but these are just derived
-mathematically from the SPD.
+    mathematically from the SPD.
 
 [^5]: For the Web in particular, this assumption is specified as the standard. A few image viewers (e.g. Discord's
-inline image display) actually ignore any embedded profiles completely and assume sRGB. Naughty, naughty! This behavior
-is notably wrong in the case of iPhone photos, which have the Display P3 profile embedded.
+    inline image display) actually ignore any embedded profiles completely and assume sRGB. Naughty, naughty! This behavior
+    is notably wrong in the case of iPhone photos, which have the Display P3 profile embedded.
 
 [^6]: It's not an *exact* match, since profile generation tries to create a somewhat smooth profile, versus overfitting
-to the patch data. Note also that this target wasn't actually individually measured; rather, the provided measurements
-are an average of this batch of targets.
+    to the patch data. Note also that this target wasn't actually individually measured; rather, the provided measurements
+    are an average of this batch of targets.
 
 [^7]: Measurements are calculated from the averaged SPDs from 3 measurements, measured M1 in spot read mode.
 
 [^8]: GIMP's eyedropper tool samples a square, and we measured a circle, which is a bit awkward. Really the ideal
-sampling area would be a circle with radius 141 px. Also, here's a gotcha/bug for the GIMP eyedropper: it only returns
-the correct RGB values if the working profile is sRGB!
+    sampling area would be a circle with radius 141 px. Also, here's a gotcha/bug for the GIMP eyedropper: it only returns
+    the correct RGB values if the working profile is sRGB!
 
 [^9]: It doesn't help if I re-measure the Faust target with the i1Pro2 and use M1 measurements. `profcheck` gives
-`errors(CIEDE2000): max. = 9.445101, avg. = 3.208840` for a profile generated from those measurements, checked against
-the "pokemon colors" ti3.
+    `errors(CIEDE2000): max. = 9.445101, avg. = 3.208840` for a profile generated from those measurements, checked against
+    the "pokemon colors" ti3.
