@@ -240,8 +240,8 @@ delta E in this case.
 
 The catch is that we're scanning trading cards, not photo paper. So we would like to do the same `profcheck` exercise,
 only this time with a ti3 file that contains RGB values *from card scans*, and Lab values *from physical cards*.
-Unfortunately we don't have a large piece of Pokémon card stock circa 2004 handy with the IT8 chart printed on it (
-at least, I don't—if you've got one, let me know :D). If we did, we'd be able to scan it and have `scanin` quickly
+Unfortunately we don't have a large piece of Pokémon card stock circa 2004 handy with the IT8 chart printed on it
+(at least, I don't—if you've got one, let me know 😃). If we did, we'd be able to scan it and have `scanin` quickly
 determine the RGB values of 288 different color patches.
 
 Since we don't have a target, this means we'll have to go the hard way and create a ti3 file ourselves.
