@@ -9,7 +9,7 @@ description: "1st in a series about creating scanner icc profiles"
 The guidance for doing accurate scans is near-universal: use an [IT8.7/2](https://en.wikipedia.org/wiki/IT8) target to
 calibrate your scanner.[^1]
 
-![scan of an IT8 target](it8-example.jpg)
+![scan of an IT8 target](it8-example.png)
 
 Scan the target "raw"; this means turning off color management in the scanner software, and getting the "earliest" image
 possible from the software. Such an image will not have been converted to a working space.
@@ -99,7 +99,7 @@ Quoting directly from Schuessler's post, this is a rough guide to what different
 | 11 - 49 | Colors are more similar than opposite  |
 | 100     | Colors are exact opposite              |
 
-Throughout my posts I'll be using Delta E 2000 (de2k) unless otherwise specified.
+Throughout my posts I'll be using delta E 2000 (de2k) unless otherwise specified.
 
 We can now define some threshold of colorimetric accuracy using delta E, where the "reference" color is what the color
 patch measures in real life using a spectrophotometer, and the sample to compare against is the same patch in my scanned
@@ -252,7 +252,7 @@ We'll look through Pokémon cards of the era we're interested in (for this exerc
 out ones that have large-ish regions of constant color on them. Here's an example card, Volbeat EX Sandstorm 53, with
 the regions of interest marked and numbered:
 
-![Volbeat card with numbered circular regions](volbeat-ss-marked.jpg)
+![Volbeat card with numbered circular regions](volbeat-ss-marked.png)
 
 We'll try our best to get a variety of colors; on Pokémon cards, it turns out that there's lots of yellow, green, and
 blue patches available, and far fewer magenta and cyan. I've noted a few hundred potential different cards that could
@@ -415,9 +415,9 @@ Here's two scans of Volbeat SS. The first has had the "IT8 color profile" applie
 "Pokémon card colors profile" applied to it. (Just for this comparison no contrast or levels changes have been made;
 normally I *would* do those.)
 
-![volbeat with it8 colors](volbeat-it8-colors.jpg)
+![volbeat with it8 colors](volbeat-it8-colors.png)
 
-![volbeat with pokemon card colors](volbeat-pokemon-colors.jpg)
+![volbeat with pokemon card colors](volbeat-pokemon-card-colors.png)
 
 I think there's an especially notable difference in the yellow color of the border.
 
