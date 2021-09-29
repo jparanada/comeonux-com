@@ -40,8 +40,8 @@ tell him the following:
 
 "Because of metameric failure, commercially-available scanner calibration targets cannot be relied on to create
 colorimetrically-accurate scans if the media being scanned is different from the media used for the target. The patches
-used for profiling should ideally be printed using the same process and paper that was used to print the material being
-scanned."
+used for profiling should ideally be printed using the same process and paper that were used to print the material
+being scanned."
 
 In the rest of this post I'll explain at a high level what this means. Then, in later posts I'll cover:
 
@@ -242,7 +242,8 @@ The catch is that we're scanning trading cards, not photo paper. So we would lik
 only this time with a ti3 file that contains RGB values *from card scans*, and Lab values *from physical cards*.
 Unfortunately we don't have a large piece of Pokémon card stock circa 2004 handy with the IT8 chart printed on it
 (at least, I don't—if you've got one, let me know 😃). If we did, we'd be able to scan it and have `scanin` quickly
-determine the RGB values of 288 different color patches.
+determine the "from-card-stock" RGB values of 288 different color patches, and we'd be able to measure it to get
+CIELAB values of patches.
 
 Since we don't have a target, this means we'll have to go the hard way and create a ti3 file ourselves.
 
@@ -374,7 +375,8 @@ media being scanned is different from the media used for the target."
 
 This idea isn't novel. For instance, it's called out
 in [this post](https://www.freelists.org/post/argyllcms/Any-guidelines-for-creating-scanner-profiles-with-Argyll,5),
-which was made on the ArgyllCMS mailing list all the way back in 2007. I'll quote the last paragraph in full:
+which was made on the ArgyllCMS mailing list by a poster named Gerhard Fuernkranz all the way back in 2007. I'll quote 
+the last paragraph in full:
 
 > If you intend to scan media of a very particular type (let's for instance assume that you would like to scan inkjet prints), then it will be IMO even beneficial, if you profile the scanner using a target printed on the SAME media type which you intend to scan (-> same paper, same printer, same inks, same printer driver settings), and not with an IT8 target, which is a significantly different media type (printed chemically on photo paper) and which may likely result in a profile which suffers from metamerism if it is used for scanning the inkjet prints. Also note the potential media WP mismatch between the paper color of the IT8 target and the paper color of the media which you actually want to scan.
 
@@ -430,7 +432,8 @@ this post!
     [here](https://scanning.guide/why-calibration-is-important),
     [here](https://www.filmscanner.info/en/Scannerkalibrierung.html),
     and [here](https://www.booksmartstudio.com/color_tutorial/scanners.html) for some examples. Note that I don't wish 
-    to put down these guides, but any claims to color accuracy should come with a big asterisk next to them. I do agree
+    to put down these guides; they do a good job of making a complicated and strange process very clear. However, any 
+    claims to color accuracy should come with a big asterisk next to them. I do agree
     that an IT8 gives you color *consistency*, although so would something like a "canned" profile that comes with 
     SilverFast. Nevertheless, I would recommend owning a target if you own a scanner; I own 2 IT8 targets, as well as a 
     Hutchcolor target.
